@@ -13,6 +13,10 @@ from nltk.tokenize import word_tokenize
 
 from sklearn.preprocessing import MultiLabelBinarizer
 
+def return_tags_from_question(question, vect, model_clf, labeller):
+    bow = vect.transform(question)
+    return get_tag_from_proba(model_clf.predict_proba(bow), 5, labeller)
+
 
 def line_treatment(line, list_words, tokenizer):
     """ Fonction qui traite une liste de mots en entrée
